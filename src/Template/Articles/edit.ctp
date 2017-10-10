@@ -20,8 +20,12 @@
     <fieldset>
         <legend><?= __('Edit Article') ?></legend>
         <?php
+            echo $this->Form->create($article);
+            // just added the categories control
+            echo $this->Form->control('category_id');
             echo $this->Form->control('title');
-            echo $this->Form->control('body');
+            echo $this->Form->control('body', ['rows' => '3']);
+            echo $this->Form->end();
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
