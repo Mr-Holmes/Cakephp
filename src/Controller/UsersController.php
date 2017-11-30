@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
+
 /**
  * Users Controller
  *
@@ -12,6 +14,8 @@ use Cake\Event\Event;
  */
 class UsersController extends AppController
 {
+
+    use MailerAwareTrait;
 
     /**
      * Index method
@@ -55,6 +59,9 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             
             if ($this->Users->save($user)) {
+
+                $this->getMailer('User')->send('default',[$user]);
+                
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -143,9 +150,5 @@ class UsersController extends AppController
     }
     return parent::isAuthorized($user);
 }
-
-public function user() {
-        return  $this->request->session()->read('Auth.User.username');
-    }
 
 }

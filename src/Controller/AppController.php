@@ -16,7 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
-
+// use Cake\Mailer\Email;
 /**
  * Application Controller
  *
@@ -47,8 +47,8 @@ class AppController extends Controller
             'authenticate' => [
                 'Form' => [
                     'fildes'=> [
-                        'username' => 'username',
-                        'password' => 'password'
+                        'username' => 'login',
+                        'password' => 'pass'
                         ]
                     ]
                 ],
@@ -96,4 +96,6 @@ class AppController extends Controller
         }
         return false;
     }
+
+    
 }
